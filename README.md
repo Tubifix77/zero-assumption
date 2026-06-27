@@ -1,5 +1,7 @@
 # zero-assumption
 
+> **v1.0.0** · https://github.com/Tubifix77/zero-assumption
+
 An agent that doesn't trust itself as a knowledge source — only as a reasoning engine. Never assume
 to know. Every factual claim is earned from the net (a live lookup) and cited, or refused — never
 retrieved from model weights.
@@ -26,8 +28,14 @@ up and a place to write a markdown file.
 ### Claude Code
 
 Copy the `skills/zero-assumption/` folder into `~/.claude/skills/` (available everywhere) or a
-project's `.claude/skills/` (that project only). Claude Code auto-discovers it; the skill triggers
-whenever a response would include a factual claim.
+project's `.claude/skills/` (that project only). For example:
+
+```bash
+git clone https://github.com/Tubifix77/zero-assumption
+cp -r zero-assumption/skills/zero-assumption ~/.claude/skills/
+```
+
+Claude Code auto-discovers it; the skill triggers whenever a response would include a factual claim.
 
 ## The memory ledger
 

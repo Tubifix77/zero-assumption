@@ -5,7 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this repo ships
 
 `zero-assumption` is **not a runtime** — there is no Python/Ollama agent, no build system, no tests.
-The deliverable is a *behavioral contract* shipped in two forms, both generated from one source file:
+Released as **v1.0.0**. The deliverable is a *behavioral contract* shipped in two forms that share a
+single source file (no build step — the skill loads the contract directly):
 
 - `skills/zero-assumption/references/contract.md` — **the single source of truth.** It is
   simultaneously the portable system prompt (paste into any LLM) and the spec the Claude Code skill
@@ -25,8 +26,10 @@ drifting). If you change the ledger schema in the contract, mirror it in `assets
 
 `zero-assumption` is an agent that **does not trust itself as a knowledge source — only as a reasoning engine.** Every factual claim must be earned from the net (live lookup), never retrieved from model weights.
 
-This is the central design constraint and should shape both how the agent is built and how you work in this repo:
+The contract realizes this through three rules (full text in `references/contract.md`):
 
-- Treat the model's parametric memory as unreliable for any factual claim. Facts get sourced and verified at runtime, not recalled.
-- When implementing features, prefer designs that fetch-then-reason over designs that assume-then-answer.
-- The model's role is reasoning, planning, and synthesis over retrieved evidence — not being the evidence.
+- **Cite or refuse** — every factual claim needs a live, cited lookup *this turn*; otherwise the agent refuses to assert it rather than answering from parametric memory. There is no "fairly sure" tier.
+- **The ledger is the only key to skipping a search** — a fresh, registered, `verified` row is the *sole* authorization to reuse a fact. Confidence or "I just looked this up" never qualifies; an unregistered fact is re-researched. So facts are registered the instant they are verified.
+- **Volatile facts re-verify; contradictions supersede** — `volatile` entries are re-fetched on every use; a contradicting lookup marks the old row `superseded` and records the new one, never overwriting silently.
+
+When editing this repo, preserve these guarantees — change them in `references/contract.md`, not by loosening the shim.
