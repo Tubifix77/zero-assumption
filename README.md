@@ -16,7 +16,7 @@ capable LLM or agent already has the tools to execute it. So it ships in two for
 Both are the *same* file — [`skills/zero-assumption/references/contract.md`](skills/zero-assumption/references/contract.md) —
 so they cannot drift.
 
-## How to use
+## Install & use
 
 ### Any LLM or agent
 
@@ -36,6 +36,23 @@ cp -r zero-assumption/skills/zero-assumption ~/.claude/skills/
 ```
 
 Claude Code auto-discovers it; the skill triggers whenever a response would include a factual claim.
+
+### Claude Desktop
+
+Download the prebuilt skill package **[`dist/zero-assumption.skill`](dist/zero-assumption.skill)**
+(a renamed `.zip` of the skill folder, which is the format the Claude apps accept). Then:
+
+1. **Settings → Capabilities**: enable **Code execution** (required for custom skills).
+2. **Customize → Skills → "+" → "+ Create skill" → Upload a skill**, and choose
+   `zero-assumption.skill`.
+3. **Restart Claude Desktop.** The skill is only indexed on reload — until you restart it will not
+   appear and cannot be invoked.
+4. Verify it shows up in your skills list. It then activates on factual requests (or invoke it
+   explicitly).
+
+> Note: Desktop skills are model-invoked from their description, not run as `/slash` commands. Also,
+> the memory ledger needs a writable, persistent path; on Desktop it runs in the code-execution
+> sandbox, so the ledger may not persist across separate conversations.
 
 ## The memory ledger
 

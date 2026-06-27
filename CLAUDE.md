@@ -15,12 +15,18 @@ single source file (no build step — the skill loads the contract directly):
   maps its abstract steps to concrete tools (`WebSearch`/`WebFetch`, the ledger path).
 - `skills/zero-assumption/assets/memory.template.md` — the empty schema for the runtime memory
   ledger (the ledger itself is runtime state, not committed).
+- `dist/zero-assumption.skill` — a **generated** artifact: a renamed `.zip` of
+  `skills/zero-assumption/` (folder at the archive root), for upload to Claude Desktop. Built by
+  `scripts/build-skill.ps1`. Do not hand-edit it.
 
 ### How to edit
 
 Edit **`contract.md` and nowhere else** for any change to the agent's behavior. The rules live only
 there; `SKILL.md` must stay a shim with no duplicated rules (this is what keeps the two forms from
 drifting). If you change the ledger schema in the contract, mirror it in `assets/memory.template.md`.
+
+After any change under `skills/zero-assumption/`, **rebuild the package** so it doesn't go stale:
+`pwsh scripts/build-skill.ps1` (regenerates `dist/zero-assumption.skill`).
 
 ## Core principle
 
