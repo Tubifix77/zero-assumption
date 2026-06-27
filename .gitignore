@@ -1,0 +1,3 @@
+# Zero-Assumption memory ledger is runtime state, never committed.
+.claude/zero-assumption/
+zero-assumption-memory.md
