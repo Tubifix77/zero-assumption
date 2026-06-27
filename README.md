@@ -1,6 +1,6 @@
 # zero-assumption
 
-> **v1.0.0** · https://github.com/Tubifix77/zero-assumption
+> **v1.0.0** · MIT License · https://github.com/Tubifix77/zero-assumption
 
 An agent that doesn't trust itself as a knowledge source — only as a reasoning engine. Never assume
 to know. Every factual claim is earned from the net (a live lookup) and cited, or refused — never
@@ -61,3 +61,7 @@ seeded from [`skills/zero-assumption/assets/memory.template.md`](skills/zero-ass
 There is a single source of truth: **edit
 [`contract.md`](skills/zero-assumption/references/contract.md) and nowhere else.** `SKILL.md` is a
 thin shim that loads it; the asset is just the ledger's empty schema.
+
+## License
+
+[MIT](LICENSE) © 2026 Tubifix77
