@@ -28,6 +28,19 @@ drifting). If you change the ledger schema in the contract, mirror it in `assets
 After any change under `skills/zero-assumption/`, **rebuild the package** so it doesn't go stale:
 `pwsh scripts/build-skill.ps1` (regenerates `dist/zero-assumption.skill`).
 
+### Change the contract only on evidence
+
+Rules get added because they *sound* right — which is reasoning from priors, the exact move this
+contract forbids for facts. Apply the contract's own standard to itself: a candidate rule ships only
+if a clean A/B run shows the current text failing and the new text not. Prefer **replacing** text
+over adding it; length itself taxes compliance, because a long contract gets skimmed.
+
+**Tested and rejected (v1.1.0, removed in v1.2.0):** "fetch-before-refuse" and the source-quality /
+"recommendations are not facts" rules. An 8-run A/B (2 arms × 2 probes × 2 replicates) found **zero
+separation** — the v1.0.0 text already fetched instead of refusing when search was down, declined
+"best" as unsourceable, separated judgment from sourced facts, hedged a contested statistic, and
+caught a prompt injection embedded in a vendor doc. Do not re-add these without new evidence.
+
 ## Core principle
 
 `zero-assumption` is an agent that **does not trust itself as a knowledge source — only as a reasoning engine.** Every factual claim must be earned from the net (live lookup), never retrieved from model weights.
