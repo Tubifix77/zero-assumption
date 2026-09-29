@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this repo ships
 
 `zero-assumption` is **not a runtime** — there is no Python/Ollama agent, no build system, no tests.
-Released as **v1.0.0**. The deliverable is a *behavioral contract* shipped in two forms that share a
+Released as **v1.2.0**. The deliverable is a *behavioral contract* shipped in two forms that share a
 single source file (no build step — the skill loads the contract directly):
 
 - `skills/zero-assumption/references/contract.md` — **the single source of truth.** It is

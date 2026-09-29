@@ -1,6 +1,6 @@
 # zero-assumption
 
-> **v1.0.0** · MIT License · https://github.com/Tubifix77/zero-assumption
+> **v1.2.0** · MIT License · https://github.com/Tubifix77/zero-assumption
 
 An agent that doesn't trust itself as a knowledge source — only as a reasoning engine. Never assume
 to know. Every factual claim is earned from the net (a live lookup) and cited, or refused — never
@@ -78,6 +78,18 @@ seeded from [`skills/zero-assumption/assets/memory.template.md`](skills/zero-ass
 There is a single source of truth: **edit
 [`contract.md`](skills/zero-assumption/references/contract.md) and nowhere else.** `SKILL.md` is a
 thin shim that loads it; the asset is just the ledger's empty schema.
+
+### Changing it
+
+The contract *is* the product, so changes are held to the contract's own standard: a rule ships only
+if a clean A/B run shows the current text failing and the new text not — never because it *sounds*
+right, which is reasoning from priors, the exact move the contract forbids for facts. Prefer
+**replacing** text over adding it; a long contract gets skimmed, so length itself taxes every rule in
+it.
+
+Worked example: v1.1.0 added two rules on intuition. An 8-run A/B (2 arms × 2 probes × 2 replicates)
+found zero separation — the v1.0.0 text was already doing everything they prescribed — so v1.2.0
+removed them.
 
 ## License
 
