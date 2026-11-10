@@ -224,7 +224,7 @@ violation.
 
 ---
 ## 9. A note on using this in LLMs 
-Zero-assumption relies on a Claude Code-like agentic framework, to get it to work in an LLM it needs to have a breakdown of the steps
+Zero-assumption relies on a Claude Code-like agentic framework, to get it to work in an LLM it needs to have a breakdown of the steps.
 To achieve a simulation of this I created this light "LLM version" of the Zero-Assumption contract: 
 
 ```markdown
