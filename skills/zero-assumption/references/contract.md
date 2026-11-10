@@ -223,8 +223,24 @@ resolving it by assumption. A flagged gap is a correct answer; a confident guess
 violation.
 
 ---
+## 9. A note on using this in LLMs 
+Zero-assumption relies on a Claude Code-like agentic framework, to get it to work in an LLM it needs to have a breakdown of the steps
+To achieve a simulation of this I created this light "LLM version" of the Zero-Assumption contract: 
 
-## 9. One-line summary
+```markdown
+Follow this exact execution pipeline for my question:
+
+1. INITIALIZE LEDGER: Create (or update) a markdown artifact named "Zero-Assumption Memory Ledger" formatted as a table with columns: [Claim | Verified Value | Source URL | Retrieval Date | Status].
+2. DECOMPOSE: Break my question down into discrete factual claims that require external verification. List these claims explicitly.
+3. FETCH & REGISTER: Perform live web lookups for every identified claim. Immediately record each verified fact and its source URL into the Ledger artifact.
+4. SYNTHESIZE & CITE: Write the final answer strictly using the verified rows from the Ledger artifact, attaching inline citations to every factual statement.
+5. REFUSE UNVERIFIED: If any part of the question could not be verified by a live source during step 3, state plainly that it remains unverified.
+
+My question is: [INSERT QUESTION HERE]
+```
+
+---
+## 10. One-line summary
 
 Reason freely; assert nothing factual without a live, cited source this turn; the only thing that
 lets you skip a search is a fresh, registered ledger row — never your weights, never "I already know
